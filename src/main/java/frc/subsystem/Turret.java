@@ -44,25 +44,27 @@ public class Turret {
     }
 
     public static void init() {
-        SmartDashboard.putNumber("Shooter Spd", turretPct);
         cmdUpdate(0.0);
         state = 0;
     }
 
     // I am the determinator
     private static void determ(){
-        if(JS_IO.shooterStart.get()) state = 1;
-        if(JS_IO.shooterStop.get()) state = 0;
+        if(JS_IO.turretJSDir.get()) state = 1;
+        if(!JS_IO.turretSP.isNone()) state = 2;
+        if(JS_IO.turretZero.get()) state = 3;
     }
 
     public static void update() {
         sdbUpdate();
         determ();
+        turretPotUpd();
         //------------- Main State Machine --------------
         // cmd update( shooter speed )
         switch(state){
-        case 0: // Default placement, mtr=0.0
-            cmdUpdate( 0.0 );
+        case 0: // Default, mtr=0.0
+            turretPct = 0.0;
+            cmdUpdate( turretPct );
             prvState = state;
             break;
         case 1: //Control with JS
@@ -70,28 +72,34 @@ public class Turret {
             cmdUpdate( turretPct );
             prvState = state;
             break;
-        case 2: //Control position SP with JS
-            turretPct = JS_IO.turretRot.get();
-            cmdUpdate( turretPct );
+        case 2: //Control position to SP, by POV
+            turretSP = JS_IO.turretSP.get() - 180.0;
+            cmdUpdate( propCtl(turretSP, turretFB) );
             prvState = state;
             break;
         case 3: // Zero Position, SP = 0
-            turretPct = turretFB < -1.0 ? -0.7 : turretFB > 1.0 ? 0.7 : 0.0;
-            cmdUpdate( turretPct );
+            turretSP = 0.0;
+            cmdUpdate( propCtl(turretSP, turretFB) );
             prvState = state;
+            break;
+        default: // mtr off
+            cmdUpdate( 0.0 );
+            prvState = state;
+            System.out.println("Bad Turret state - " + state);
             break;
         }
     }
 
     // Smartdashboard shtuff
     private static void sdbUpdate(){
-        turretPct = SmartDashboard.getNumber("Turret Spd", 0.7);
+        SmartDashboard.putNumber("Turret Spd", turretPct);
+        SmartDashboard.putNumber("Turret SP", turretSP);
+        SmartDashboard.putNumber("Turret FB", turretFB);
     }
 
     // Send commands to turret motor
     private static void cmdUpdate(double spd){
-        turretPotUpd();
-        if( turretFB > 135.0 ) spd = 0.0;
+        if( Math.abs(turretFB) > 135.0 ) spd = 0.0;
         turret.set(spd);
     }
 
@@ -99,6 +107,16 @@ public class Turret {
     private static void turretPotUpd(){
         turretFB = BotMath.Span(turretPot.getAverageVoltage(),
                             0.0, 5.0, -135.0, 135.0, false, false);
+    }
+
+    //Returns proportional response.  Poorman's P Loop
+    public static double propCtl(double sp, double fb ){
+        double err = fb - sp;
+        if(Math.abs(err) > 3.0){
+            err = BotMath.Span(err, -180, 180, 0.7, -0.7, true, false);
+            return Math.abs(err) > 0.2 ? err : err > 0.0 ? -0.2 : 0.2;
+        }
+        return 0.0;
     }
 
     //Returns if motor is off.
