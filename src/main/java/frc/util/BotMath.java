@@ -40,7 +40,7 @@ public class BotMath{
         return (key >= min && key <= max);
     }
     
-    //---- Convert an arrray of booleans to an integer ----
+    //---- Convert an array of booleans to an integer ----
     // No more than 15 items.  [0] is lsb.
     public static int Bool2Int( boolean arInBool[] ){
         int tmp = 0;

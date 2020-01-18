@@ -39,6 +39,7 @@ public class JS_IO{
     // Declare all stick control
     public static Axis leftDrive;     // Left Drive
     public static Axis rightDrive;    // Right Drive
+    public static Axis turretRot;     // Rotate turret
 
     // Turret buttons
     public static Button shooterStart;  // Start shooter motor
@@ -47,6 +48,9 @@ public class JS_IO{
     public static Button turretCCW;     // Turn turret CCW
     public static Button lifterUp;      // Run motor to lift balls
     public static Button lifterDn;      // Run motor to lower balls
+    public static Button turretJSDir;   // Directly rotate with JS
+    public static Button turretJSSP;    // Rotate by inc/dec Pot SP with JS
+    public static Button turretZero;    // Rotate forward
 
     // Constructor
     public JS_IO(){
@@ -103,6 +107,7 @@ public class JS_IO{
         // All stick axisesssss
         leftDrive = new Axis(leftJoystick, 0);
         rightDrive = new Axis(rightJoystick, 0);
+        turretRot = new Axis(coJoystick, 1);
 
         // Turret buttons
         shooterStart = new Button(leftJoystick, 6);
@@ -111,6 +116,10 @@ public class JS_IO{
         turretCCW = new Button(leftJoystick, 8);
         lifterUp = new Button(leftJoystick, 10);
         lifterDn = new Button(leftJoystick, 10);
+
+        turretJSDir = new Button(gamePad, 10);
+        turretJSSP = new Button(gamePad, 10);
+        turretZero = new Button(gamePad, 10);
     }
 
     // ----- gamePad only --------
@@ -118,7 +127,8 @@ public class JS_IO{
 
         // All stick axisesssss
         leftDrive = new Axis(gamePad, 0);
-        rightDrive = new Axis(gamePad, 1);
+        rightDrive = new Axis(gamePad, 3);
+        turretRot = new Axis(gamePad, 5);
 
         // Turret buttons
         shooterStart = new Button(gamePad, 6);
@@ -127,7 +137,11 @@ public class JS_IO{
         turretCCW = new Button(gamePad, 8);
         lifterUp = new Button(gamePad, 10);
         lifterDn = new Button(gamePad, 10);
-    }
+
+        turretJSDir = new Button(gamePad, 10);
+        turretJSSP = new Button(gamePad, 10);
+        turretZero = new Button(gamePad, 10);
+        }
 
     // ------------ One Joystick only -----------
     private static void A_JS(){
@@ -139,7 +153,8 @@ public class JS_IO{
 
         // All stick axisesssss
         leftDrive = new Axis(gamePad, 0);
-        rightDrive = new Axis(gamePad, 1);
+        rightDrive = new Axis(gamePad, 3);
+        turretRot = new Axis(gamePad, 5);
 
         // Turret buttons
         shooterStart = new Button(gamePad, 6);
@@ -148,6 +163,10 @@ public class JS_IO{
         turretCCW = new Button(gamePad, 8);
         lifterUp = new Button(gamePad, 10);
         lifterDn = new Button(gamePad, 10);
+
+        turretJSDir = new Button(gamePad, 10);
+        turretJSSP = new Button(gamePad, 10);
+        turretZero = new Button(gamePad, 10);
     }
 
     // ----- Nintendo gamePad only --------
@@ -161,6 +180,7 @@ public class JS_IO{
         // All stick axisesssss
         leftDrive = new Axis(null, 0);
         rightDrive = new Axis(null, 0);
+        turretRot = new Axis(null, 0);
 
         // Turret buttons
         shooterStart = new Button(null, 0);
@@ -169,5 +189,9 @@ public class JS_IO{
         turretCCW = new Button(null, 0);
         lifterUp = new Button(null, 0);
         lifterDn = new Button(null, 0);
+
+        turretJSDir = new Button(null, 0);
+        turretJSSP = new Button(null, 0);
+        turretZero = new Button(null, 0);
     }
 }
