@@ -49,7 +49,7 @@ public class JS_IO{
     public static Button lifterUp;      // Run motor to lift balls
     public static Button lifterDn;      // Run motor to lower balls
     public static Button turretJSDir;   // Directly rotate with JS
-    public static Button turretJSSP;    // Rotate by inc/dec Pot SP with JS
+    public static Pov turretSP;         // Rotate by Pot SP with JS 0/45/90/.../315
     public static Button turretZero;    // Rotate forward
 
     // Constructor
@@ -118,7 +118,7 @@ public class JS_IO{
         lifterDn = new Button(leftJoystick, 10);
 
         turretJSDir = new Button(gamePad, 10);
-        turretJSSP = new Button(gamePad, 10);
+        turretSP = new Pov(gamePad, 0);
         turretZero = new Button(gamePad, 10);
     }
 
@@ -139,7 +139,7 @@ public class JS_IO{
         lifterDn = new Button(gamePad, 10);
 
         turretJSDir = new Button(gamePad, 10);
-        turretJSSP = new Button(gamePad, 10);
+        turretSP = new Pov(gamePad, 0);
         turretZero = new Button(gamePad, 10);
         }
 
@@ -165,7 +165,7 @@ public class JS_IO{
         lifterDn = new Button(gamePad, 10);
 
         turretJSDir = new Button(gamePad, 10);
-        turretJSSP = new Button(gamePad, 10);
+        turretSP = new Pov(gamePad, 0);
         turretZero = new Button(gamePad, 10);
     }
 
@@ -191,7 +191,7 @@ public class JS_IO{
         lifterDn = new Button(null, 0);
 
         turretJSDir = new Button(null, 0);
-        turretJSSP = new Button(null, 0);
+        turretSP = new Pov(null, -1);
         turretZero = new Button(null, 0);
     }
 }
