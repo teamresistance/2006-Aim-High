@@ -48,7 +48,7 @@ Future, Control the speed of the shooter to a setpoint thru a pid loop.  Best gu
 3300 rpm.  This requires an encoder on the wheel for feedback.
 Future future, change the victor to a TalonSRX and move the pid to the Talon.
 
-    * Sequence: </br>
+* Sequence:
 (0)Default, the motor is set to 0.0, off.  When trigger is released the shooter is set to 0.0. </br>
 (1)Normal control when trigger is pressed, presently fixed value (0.7), future pid loop encoder. </br>
 (2)When a ball first enters the shooter the additional load causes the shooter to slow down.  The
