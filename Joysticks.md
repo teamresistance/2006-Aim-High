@@ -6,48 +6,32 @@
   
   | Action      | JS  | Axis / Button | | Gamepad    |Comment          |
   |-------------|-----|---------------|-|------------|-----------------|
-  |Rotate Robot | Left | Y-Axis(1) || LJS-Y-Axis(1) ||
-  |Reset Gyro | Left | Button(6) || Button(?) |
-  |Hold Angle 90 | Left | Button(7) || Button(?) |
-  |Chg to Field Orient. | Left | Button(8) || Button(?) |
-  |Hold Angle 30 | Left | Button(9) || Button(?) |
-  |Chg to Robot Orient. | Left | Button(10) || Button(?) |
-  |Rotate Robot | Left | Y-Axis(1) || RJS-Axis(4) |
-  |Move Back & Forward| Right| X-Axis(0)|| RJS-X-Axis(4)|
-  |Move Left & Right| Right| Y-Axis(1)|| RJS-Y-Axis(5)|
-  |Snorfler In| Co-Dvr | POV(180)|| POV(180)|
-  |Snorfler Out| Co-Dvr | POV(0)|| POV(0)|
-  |Hatch Fork| Co-Dvr | Button(1)|| Button(?)|
-  |Reset Climber| Co-Dvr | Button(2)|| Button(?)|
-  |Ground Snorfler| Co-Dvr | Button(4)|| Button(?)|
-  |Fix Front Climb| Co-Dvr | Button(7)|| Button(?)|
-  |Fix Rear Climb| Co-Dvr | Button(8)|| Button(?)|
-  |High Climb| Co-Dvr | Button(10)|| Button(?)|
-  |Extend/Recall Shaft| Co-Dvr | Button(11)|| Button(?)|Toggle|
-  |Low Climb| Co-Dvr | Button(12)|| Button(?)|
+  |Left Drive | Left | Y-Axis(1) || LJS-Y-Axis(1) ||
+  |Right Drive | Right | Y-Axis(1) || RJS-Y-Axis(5) |
+  |Turret Rotate | Co-Dvr | X-Axis(0) || RJS-X-Axis(4) |
+  |Shooter Run | Right | Button(1) || Button(6) |
+  |Turret CW | Right | Button(12) || Button(2) |
+  |Turret CCW | Right | Button(11) || Button(3) |
+  |Lifter Up | Right| Button(5) || Button(8) |
+  |Lifter Dn | Right| Button(3) || Button(7) |
+  |Turret Ctl JS | Co-Dvr | Button(7)|| Button(5) |
+  |Turret Ctl SP | Co-Dvr | Button(9)|| Button(4) |
+  |Turret Zero | Co-Dvr | Button(11)|| Button(1)|
 
   
   * Joystick 1 (Left)
-    * Y of Joystick Rotates Robot
-    * Button 6: Reset Gyro
-    * Button 7: Hold Angle 90
-    * Button 8: Change to Field Orientation
-    * Button 9: Hold Angle 30
-    * Button 10: Change to Robot Orientation
+    * Y of Joystick Drives left wheels
     
   * Joystick 2 (Right)
-    * X of Joystick Moves Back and Forth
-    * Y of Joystick Moves Left and Right
+    * Y of Joystick Drives right wheels
+    * Button 1: Trigger, runs shooter
+    * Button 11: Rotates turret CCW
+    * Button 12: Rotates turret CW
+    * Button  3: Run balls down
+    * Button  4: Run balls up
     
   * Joystick 3 (CoJoystick)
-    * Thumbstick (X2)
-      * Back = Snorfler In
-      * Forward = Snorfler Out
-    * Button 1: Hatch Fork
-    * Button 2: Reset Climb
-    * Button 4: Ground Snorfler
-    * Button 7: Fix Front Climb
-    * Button 8: Fix Rear Climb
-    * Button 10: High Climb
-    * Button 11: Extend/Recall Shaft
-    * Button 12: Low Climb
+    * X of Joystick rotates turret CW/CCW when selected
+    * Button  7: Change turret control to joystick
+    * Button  9: Change turret control to setpoint from smartdashboard value
+    * Button 11: Zero turret setpoint
