@@ -7,7 +7,7 @@ jch - 1/2020 - Original Release
 TODO: - Need to test
 
 Desc.
-The lifter liftes the balls to the shooter.
+The lifter lifts the balls to the shooter.
 
 Sequence:
 (0)Default, the motor is set to 0.0, off, when no buttons pressed.
@@ -56,19 +56,24 @@ public class Lifter {
         //------------- Main State Machine --------------
         // cmd update( shooter speed )
         switch(state){
-        case 0: // Default placement, mtr=0.0
+        case 0: // Default, mtr=0.0
             cmdUpdate( 0.0 );
             prvState = state;
             break;
-        case 1: //Shoot at default speed
+        case 1: // Move balls up
             cmdUpdate( lifterPct );
             prvState = state;
             break;
-        case 2: // Shooter slow, bump to compensate
+        case 2: // Move balls down
             cmdUpdate( -lifterPct );
             prvState = state;
             break;
-        }
+        default: // Bad state, mtr off
+            cmdUpdate( 0.0 );
+            prvState = state;
+            System.out.println("Bad Lifter state - " + state);
+            break;
+    }
     }
 
     // Smartdashboard shtuff
