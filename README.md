@@ -45,12 +45,10 @@ The team's solution was to have a bot that could collect a lot of balls, go to g
 Future, Control the speed of the shooter to a setpoint thru a pid loop.  Best guess is approx.
 3300 rpm.  This requires an encoder on the wheel for feedback.
 Future future, change the victor to a TalonSRX and move the pid to the Talon.</br>
-  * Sequence:
-(0) Default, the motor is set to 0.0, off.  When trigger is released the shooter is set to 0.0.</br>
-(1) Normal control when trigger is pressed, presently fixed value (0.7), future pid loop encoder.</br>
-(2) When a ball first enters the shooter the additional load causes the shooter to slow down.  The
-first ball may come out hot but other balls will come out short until the pid can compensate.  One
-method is to bump the speed up until back to setpoint (or presently, just some time period).
+  * Sequence:</br>
+        (0) Default, the motor is set to 0.0, off.  When trigger is released the shooter is set to 0.0.</br>
+        (1) Normal control when trigger is pressed, presently fixed value (0.7), future pid loop encoder.</br>
+        (2) When a ball first enters the shooter the additional load causes the shooter to slow down.  The first ball may come out hot but other balls will come out short until the pid can compensate.  One method is to bump the speed up until back to setpoint (or presently, just some time period).
 
 * Turret
     * Description:  The turret rotates the turret to track a target using CV Limelight.  Can be manually controlled.  A pot is used to limit rotation from -135 to 135 with 0 being forward and setpoint control.
