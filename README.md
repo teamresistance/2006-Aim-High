@@ -41,7 +41,7 @@ The team's solution was to have a bot that could collect a lot of balls, go to g
 * Tank Drive
 
 * Shooter
-    *Desc.
+    * Description:
 The shooter spins a wheel to shoot a 7" ball at approx. 35 fps.  It starts when a button is pressed
 and stop on the press of another button.
 Presently, the speed is fixed, set thru the sdb.
@@ -49,7 +49,7 @@ Future, Control the speed of the shooter to a setpoint thru a pid loop.  Best gu
 3300 rpm.  This requires an encoder on the wheel for feedback.
 Future future, change the victor to a TalonSRX and move the pid to the Talon.
 
-Sequence:
+    * Sequence:
 (0)Default, the motor is set to 0.0, off.
 When button is pressed the shooter is set to 0.0.
 (1)Normal control, presently fixed value (0.7), future pid loop encoder.
@@ -58,21 +58,21 @@ first ball may come out hot but other balls will come out short until the pid ca
 method is to bump the speed up until back to setpoint (or presently, just some time period).
 
 * Turret
-    *Description:
-        *The turret rotates the turret to track a target using CV Limelight.  Can be manually controlled.  A pot is used to limit rotation from -135 to 135 with 0 being forward and setpoint control.
+    * Description:
+        The turret rotates the turret to track a target using CV Limelight.  Can be manually controlled.  A pot is used to limit rotation from -135 to 135 with 0 being forward and setpoint control.
 
-    *Sequence:
+    * Sequence:
         *(0)Default, the motor is set to 0.0, off.
         (1)JS used to manually rotate.
         (2)If a POV is pressed switch to setpoint control, for testing. 0/45/90/.../315
         (3)Chgs SP to 0 then rotates forward.
 
 * Lifter
-    *Description
+    * Description
         *The lifter lifts the balls to the shooter.
 
-    *Sequence:
-        *(0)Default, the motor is set to 0.0, off, when no buttons pressed.
+    * Sequence:
+        * (0)Default, the motor is set to 0.0, off, when no buttons pressed.
 (1)Balls move up when up button is pressed.
 (2)Balls move dn when dn button is pressed.
 
