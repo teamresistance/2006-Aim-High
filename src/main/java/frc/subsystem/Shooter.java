@@ -23,9 +23,10 @@ first ball may come out hot but other balls will come out short until the pid ca
 method is to bump the speed up until back to setpoint (or presently, just some time period).
 */
 
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
+import com.ctre.phoenix.motorcontrol.ControlMode;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.io.hdw_io.IO;
 import frc.io.joysticks.JS_IO;
@@ -33,7 +34,7 @@ import frc.util.timers.OnDly;
 import frc.util.timers.OnOffDly;
 
 public class Shooter {
-    private static Victor shooter = IO.shooter;
+    private static TalonSRX shooter = IO.shooter;
 
     private static double shooterPct = 0.7;
 
@@ -53,8 +54,7 @@ public class Shooter {
 
     // I am the determinator
     private static void determ(){
-        if(JS_IO.shooterStart.get()) state = 1;
-        if(JS_IO.shooterStop.get()) state = 0;
+        state =  JS_IO.shooterRun.get() ? 1 : 0;
     }
 
     public static void update() {
@@ -85,12 +85,12 @@ public class Shooter {
 
     // Send commands to shooter motor
     private static void cmdUpdate(double spd){
-        shooter.set(spd);
+        shooter.set(ControlMode.PercentOutput, spd);
     }
 
     //Returns if motor is off.
     public static boolean get(){
-        return shooter.get() < 0.1;
+        return shooter.getMotorOutputPercent() < 0.1;
     }
 
     public static boolean isAtSpd(){
