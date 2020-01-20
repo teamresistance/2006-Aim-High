@@ -10,6 +10,7 @@
   |Right Drive | Right | Y-Axis(1) || RJS-Y-Axis(5) |
   |Turret Rotate | Co-Dvr | X-Axis(0) || RJS-X-Axis(4) |
   |Shooter Run | Right | Button(1) || Button(6) |
+  |Shooter Stop | Right | Button(6) || Button(9) |
   |Turret CW | Right | Button(12) || Button(2) |
   |Turret CCW | Right | Button(11) || Button(3) |
   |Lifter Up | Right| Button(5) || Button(8) |

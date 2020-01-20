@@ -42,7 +42,8 @@ public class JS_IO{
     public static Axis turretRot;     // Rotate turret
 
     // Turret buttons
-    public static Button shooterRun;    // Run shooter motor on trigger
+    public static Button shooterRun;    // Run shooter (trigger) else idle
+    public static Button shooterStop;   // Stop shooter
     public static Button turretCW;      // Turn turret CW
     public static Button turretCCW;     // Turn turret CCW
     public static Button lifterUp;      // Run motor to lift balls
@@ -112,11 +113,12 @@ public class JS_IO{
         turretRot = new Axis(coJoystick, 0);
 
         // Turret buttons
-        shooterRun = new Button(leftJoystick, 1);
-        turretCW = new Button(leftJoystick, 12);
-        turretCCW = new Button(leftJoystick, 11);
-        lifterUp = new Button(leftJoystick, 3);
-        lifterDn = new Button(leftJoystick, 5);
+        shooterRun = new Button(rightJoystick, 1);
+        shooterStop = new Button(rightJoystick, 6);
+        turretCW = new Button(rightJoystick, 12);
+        turretCCW = new Button(rightJoystick, 11);
+        lifterUp = new Button(rightJoystick, 3);
+        lifterDn = new Button(rightJoystick, 5);
 
         turretJSDir = new Button(coJoystick, 7);
         turretSP = new Pov(coJoystick, 0);
@@ -136,6 +138,7 @@ public class JS_IO{
 
         // Turret buttons
         shooterRun = new Button(gamePad, 6);
+        shooterStop = new Button(gamePad, 9);
         turretCW = new Button(gamePad, 2);
         turretCCW = new Button(gamePad, 3);
         lifterUp = new Button(gamePad, 4);
@@ -174,6 +177,7 @@ public class JS_IO{
 
         // Turret buttons
         shooterRun = new Button(null, 0);
+        shooterStop = new Button(null, 0);
         turretCW = new Button(null, 0);
         turretCCW = new Button(null, 0);
         lifterUp = new Button(null, 0);
