@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.io.hdw_io.IO;
 import frc.io.hdw_io.ColorTest1;
+import frc.io.hdw_io.ColorTest2;
 import frc.io.joysticks.JS_IO;
 import frc.subsystem.Shooter;
 import frc.subsystem.Turret;
@@ -30,6 +31,7 @@ public class Robot extends TimedRobot {
         Turret.init();
         Lifter.init();
         ColorTest1.init();
+        ColorTest2.init();
     }
 
     /**
@@ -68,6 +70,7 @@ public class Robot extends TimedRobot {
         // Turret.update();
         // Lifter.update();
         // ColorTest1.update();
+        // ColorTest2.update();
     }
 
     /**
