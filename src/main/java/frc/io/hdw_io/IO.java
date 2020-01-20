@@ -4,6 +4,7 @@ import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.PowerDistributionPanel;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -24,6 +25,8 @@ public class IO {
 
     public static Encoder shooterRPM = new Encoder(0, 1);
     public static AnalogInput turretPot = new AnalogInput(0);    //Figure out how to chg to pot interface
+    public static DigitalInput turretCCWes = new DigitalInput(0);   // CCW End Switch
+    public static DigitalInput turretCWes = new DigitalInput(1);    // CC End Switch
 
     // navX
     // public static NavX navX = new NavX();

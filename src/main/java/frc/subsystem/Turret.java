@@ -95,11 +95,15 @@ public class Turret {
         SmartDashboard.putNumber("Turret Spd", turretPct);
         SmartDashboard.putNumber("Turret SP", turretSP);
         SmartDashboard.putNumber("Turret FB", turretFB);
+        SmartDashboard.putBoolean("Turret CCW ES", IO.turretCCWes.get());
+        SmartDashboard.putBoolean("Turret CW ES", IO.turretCWes.get());
     }
 
     // Send commands to turret motor
     private static void cmdUpdate(double spd){
         if( Math.abs(turretFB) > 135.0 ) spd = 0.0;
+        if( IO.turretCCWes.get() && spd < 0 ) spd = 0;
+        if( IO.turretCWes.get() && spd > 0 ) spd = 0;
         turret.set(spd);
     }
 
