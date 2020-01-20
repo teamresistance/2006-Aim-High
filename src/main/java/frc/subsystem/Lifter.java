@@ -73,7 +73,7 @@ public class Lifter {
             prvState = state;
             System.out.println("Bad Lifter state - " + state);
             break;
-    }
+        }
     }
 
     // Smartdashboard shtuff
@@ -89,9 +89,5 @@ public class Lifter {
     //Returns if motor is off.
     public static boolean get(){
         return Math.abs(lifter.get()) < -0.1;
-    }
-
-    public static boolean isAtSpd(){
-        return true;
     }
 }
