@@ -48,7 +48,8 @@ Future future, change the victor to a TalonSRX and move the pid to the Talon.</b
   * Sequence:</br>
         (0) Default, the motor is set to 0.0, off.  When trigger is released the shooter is set to 0.0.</br>
         (1) Normal control when trigger is pressed, presently fixed value (0.7), future pid loop encoder.</br>
-        (2) When a ball first enters the shooter the additional load causes the shooter to slow down.  The first ball may come out hot but other balls will come out short until the pid can compensate.  One method is to bump the speed up until back to setpoint (or presently, just some time period).
+        (2) When a ball first enters the shooter the additional load causes the shooter to slow down.  The first ball may come out hot but other balls will come out short until the pid can compensate.  One method is to bump the speed up until back to setpoint (or presently, just some time period).</br>
+        (3) Once the shooter is upto speed idle it when not shooting.
 
 * Turret
     * Description:  The turret rotates the turret to track a target using CV Limelight.  Can be manually controlled.  A pot is used to limit rotation from -135 to 135 with 0 being forward and setpoint control.

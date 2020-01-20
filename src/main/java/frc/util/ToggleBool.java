@@ -4,7 +4,7 @@ Author: Jim Hofmann
 History: 
 JCH - 11/8/2019 - Original Release
 
-TODO: - 
+TODO: - Need more testing
 
 Desc:
 Can be used to set an object that toggles on each press.

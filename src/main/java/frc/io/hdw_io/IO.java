@@ -42,7 +42,8 @@ public class IO {
     public static void update(){
         SmartDashboard.putNumber("Shooter Pwr", pdp.getCurrent(12));
 
-            /* check our live faults */
+        //------- Shooter Talon pidf control setup -------------
+        /* check our live faults */
         shooter.getFaults(_faults);
         if(JS_IO.ptrShtrDiag.get()) {
             System.out.println("Sensor Vel:" + shooter.getSelectedSensorVelocity());

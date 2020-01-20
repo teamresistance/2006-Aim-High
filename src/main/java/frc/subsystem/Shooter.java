@@ -15,12 +15,13 @@ Future, Control the speed of the shooter to a setpoint thru a pid loop.  Best gu
 Future future, change the victor to a TalonSRX and move the pid to the Talon.
 
 Sequence:
-(0)Default, the motor is set to 0.0, off.
+(0) Default, the motor is set to 0.0, off.
 When button is pressed the shooter is set to 0.0.
-(1)Normal control, presently fixed value (0.7), future pid loop encoder.
-(2)When a ball first enters the shooter the additional load causes the shooter to slow down.  The
+(1) Normal control, presently fixed value (0.7), future pid loop encoder.
+(2) When a ball first enters the shooter the additional load causes the shooter to slow down.  The
 first ball may come out hot but other balls will come out short until the pid can compensate.  One
 method is to bump the speed up until back to setpoint (or presently, just some time period).
+(3) Once the shooter is upto speed idle it when not shooting.
 */
 
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
@@ -55,6 +56,7 @@ public class Shooter {
     // I am the determinator
     private static void determ(){
         state =  JS_IO.shooterRun.get() ? 1 : 0;
+        if(JS_IO.shooterRun.get()) state = 1;
     }
 
     public static void update() {
@@ -63,17 +65,27 @@ public class Shooter {
         //------------- Main State Machine --------------
         // cmd update( shooter speed )
         switch(state){
-        case 0: // Default placement, mtr=0.0
+        case 0: // Default, mtr=0.0
             cmdUpdate( 0.0 );
             prvState = state;
             break;
         case 1: //Shoot at default speed
             cmdUpdate( shooterPct );
             prvState = state;
+            if(!JS_IO.shooterRun.get()) state = 3;
             break;
         case 2: // Shooter slow, bump to compensate
             cmdUpdate( 100.0 );
             prvState = state;
+            break;
+        case 3: // Shooter idle after shooting once
+            cmdUpdate( 0.3 );
+            prvState = state;
+            break;
+        default: // Default, mtr=0.0
+            cmdUpdate( 0.0 );
+            prvState = state;
+            System.out.println("Bad Shooter state - " + state);
             break;
         }
     }
@@ -93,6 +105,7 @@ public class Shooter {
         return shooter.getMotorOutputPercent() < 0.1;
     }
 
+    // TODO: Need to add code once we have the Talon encoder reading.
     public static boolean isAtSpd(){
         return true;
     }
