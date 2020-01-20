@@ -55,8 +55,8 @@ public class Shooter {
 
     // I am the determinator
     private static void determ(){
-        state =  JS_IO.shooterRun.get() ? 1 : 0;
         if(JS_IO.shooterRun.get()) state = 1;
+        if(JS_IO.shooterStop.get()) state = 0;
     }
 
     public static void update() {
