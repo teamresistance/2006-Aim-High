@@ -4,10 +4,11 @@ import frc.io.hdw_io.IO;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import edu.wpi.first.wpilibj.util.Color;
 
+import com.revrobotics.ColorMatchResult;
 import com.revrobotics.ColorMatch;
 
 
-public class ColorTest2 {
+public class TestColor1 {
 
     /**
      * A Rev Color Match object is used to register and detect known colors. This can 
@@ -29,7 +30,7 @@ public class ColorTest2 {
 
 
     // Constructor
-    public ColorTest2(){
+    public TestColor1(){
         init();
     }
 
@@ -56,9 +57,22 @@ public class ColorTest2 {
         Color detectedColor = IO.m_colorSensor.getColor();
 
         /**
-         * The sensor returns a raw IR value of the infrared light detected.
+         * Run the color match algorithm on our detected color
          */
-        double IR = IO.m_colorSensor.getIR();
+        String colorString;
+        ColorMatchResult match = m_colorMatcher.matchClosestColor(detectedColor);
+
+        if (match.color == kBlueTarget) {
+        colorString = "Blue";
+        } else if (match.color == kRedTarget) {
+        colorString = "Red";
+        } else if (match.color == kGreenTarget) {
+        colorString = "Green";
+        } else if (match.color == kYellowTarget) {
+        colorString = "Yellow";
+        } else {
+        colorString = "Unknown";
+        }
 
         /**
          * Open Smart Dashboard or Shuffleboard to see the color detected by the 
@@ -67,21 +81,7 @@ public class ColorTest2 {
         SmartDashboard.putNumber("Red", detectedColor.red);
         SmartDashboard.putNumber("Green", detectedColor.green);
         SmartDashboard.putNumber("Blue", detectedColor.blue);
-        SmartDashboard.putNumber("IR", IR);
-
-        /**
-         * In addition to RGB IR values, the color sensor can also return an 
-         * infrared proximity value. The chip contains an IR led which will emit
-         * IR pulses and measure the intensity of the return. When an object is 
-         * close the value of the proximity will be large (max 2047 with default
-         * settings) and will approach zero when the object is far away.
-         * 
-         * Proximity can be used to roughly approximate the distance of an object
-         * or provide a threshold for when an object is close enough to provide
-         * accurate color values.
-         */
-        int proximity = IO.m_colorSensor.getProximity();
-
-        SmartDashboard.putNumber("Proximity", proximity);
+        SmartDashboard.putNumber("Confidence", match.confidence);
+        SmartDashboard.putString("Detected Color", colorString);
     }    
 }
